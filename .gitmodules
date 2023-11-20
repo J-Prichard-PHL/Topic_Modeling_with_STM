@@ -1,0 +1,3 @@
+[submodule "R/rUtils"]
+	path = R/rUtils
+	url = https://github.com/Jprichard314/rUtils.git

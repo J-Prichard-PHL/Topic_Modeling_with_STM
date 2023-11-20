@@ -1,0 +1,10 @@
+name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
+create__documentDataset|function|9b50a3cbda88244e|||||||||||||||
+create__textMatrix|function|1e0108bacfa3e6ff|||||||||||||||
+create__tidyTextDataset|function|42544588145d974d|||||||||||||||
+extract__311raw|stem|b341593161b5b664|412168b63bf8584a|bd01740e5af3234e|-488879972||t19679.5657014609s|9b6d1e0ffb5bedad|17174977|rds|local|vector|||39.75||
+getData_cartoDbMonthQuery|function|29bf075ecf9396cc|||||||||||||||
+getData_phlCartoApi|function|84101297784cd769|||||||||||||||
+stm|stem|39f782b49641acd8|2ff228fad6019fd7|b460f55a4343031c|1625958477||t19679.8728979589s|75f7bf0fc76ef872|5949919|rds|local|vector|||362.75|package quanteda was built under R version 4.3.2. undefined subclass ndiMatrix of class replValueSp definition not updated. undefined subclass pcorMatrix of class replValueSp definition not updated|
+transform__311dfmText|stem|bc5448dd9c532580|9aca5bdf5784d9d4|85af34b9fdd284dd|-1026815574||t19679.8684821319s|7827ce7c558a2789|4949090|rds|local|vector|||12.48|undefined subclass ndiMatrix of class replValueSp definition not updated. undefined subclass pcorMatrix of class replValueSp definition not updated|
+transform__311tidyText|stem|0593275bc522a09e|de766a0f1d0e9619|826d68c90d8ba146|-1692642544||t19679.6111672122s|595562a2ea61c6e8|1834161|rds|local|vector|||3.88||
