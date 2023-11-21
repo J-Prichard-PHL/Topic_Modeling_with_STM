@@ -11,6 +11,9 @@ library(janitor)
 library(tidyverse)
 library(stm)
 library(tidytext)
+library(glue)
+library(future)
+library(furrr)
 
 # Set target options:
 tar_option_set(
@@ -19,6 +22,8 @@ tar_option_set(
                 , "httr"
                 , 'lubridate'
                 , 'janitor'
+                , "future"
+                , "furrr"
               
                 
                 
@@ -33,6 +38,7 @@ options(clustermq.scheduler = "multiprocess")
 tar_source(c(
               "R/rUtils/dataCapture/apis.R"
               , "R/1__dataPreparation.R"
+              , "R/2__modelCreationAndSelection.R"
           ))
 
 # ===== Call Targets ====
@@ -50,25 +56,49 @@ list(
 
   ),
   
+  # ==== Take only LI calls ==== 
+  tar_target(
+    name = filter__311Calls_li
+    , command = filter(
+        extract__311raw
+      , agency_responsible == "License & Inspections"
+    )
+  ),
+  
+  
   # ==== TidyTize the Data and Cast to a DFM ==== 
   tar_target(
              name      = transform__311tidyText
              , command = create__tidyTextDataset(
-                                                 extract__311raw
+                                                   filter__311Calls_li
                                                  , stopwords      = tidytext::stop_words
                                                  , text_field     = "subject"
                                                  , document_field = "cartodb_id"
              )
   ),
   
+
+  
   tar_target(
              name = transform__311dfmText
              , command = create__textMatrix(transform__311tidyText)
   ),
   
-  # ==== Utilize STM Model -- Tuning ====
   tar_target(
-               name = stm 
-             , stm::stm(transform__311dfmText,K = 6,verbose = FALSE, init.type = "Spectral")
+               name = modelspace
+             , command = fit__modelOverSearchSpace(
+                                                      seq(5,25,5)
+                                                    , transform__311dfmText
+             )
+  ),
+  
+  tar_target(
+                   name = model_selection
+                 , command = transform__modelMetrics(
+                               dataset = transform__311dfmText
+                             , model_data = modelspace
+                 )
   )
+  
+
 )

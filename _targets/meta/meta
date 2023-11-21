@@ -2,9 +2,14 @@ name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iterat
 create__documentDataset|function|9b50a3cbda88244e|||||||||||||||
 create__textMatrix|function|1e0108bacfa3e6ff|||||||||||||||
 create__tidyTextDataset|function|42544588145d974d|||||||||||||||
-extract__311raw|stem|b341593161b5b664|412168b63bf8584a|bd01740e5af3234e|-488879972||t19679.5657014609s|9b6d1e0ffb5bedad|17174977|rds|local|vector|||39.75||
-getData_cartoDbMonthQuery|function|29bf075ecf9396cc|||||||||||||||
-getData_phlCartoApi|function|84101297784cd769|||||||||||||||
+extract__311raw|stem|d87040ff21ba468d|412168b63bf8584a|0134e77aba3484c2|-488879972||t19681.8754613101s|3db64a84aa14cb52|17201681|rds|local|vector|||58.44||
+filter__311Calls_li|stem|d21db57260ddeb82|9114f87cd505e5c1|a6a4046fbcc4bc12|-130019379||t19682.0247459457s|e87012e0e68d3ae4|1943811|rds|local|vector|||0.01||
+fit__modelOverSearchSpace|function|28eeec57b82af5ea|||||||||||||||
+getData_cartoDbMonthQuery|function|1cf6d406378482e8|||||||||||||||
+getData_phlCartoApi|function|544f346554acd4f7|||||||||||||||
+model_selection|stem|4eafd867f47a581b|0b86096eedf07559|eaaf1b5efdc0cb73|-1230616911||t19682.0446095866s|a1214dd2c738f1ee|2761844|rds|local|vector|||9.61||
+modelspace|stem|b5772f7a40bac0ea|76400e64eb453e89|6ca93ddd54ecb8a8|1466217285||t19682.0444911552s|481a5e1421039432|2702108|rds|local|vector|||1501.18|1m22mThere were 8 warnings in mutate.The first warning was1m22m36mℹ39m In argument topic_model  furrrfuture_mapk, stmstmdataset, K  .,  verbose  FALSE.Caused by warning33m39m package quanteda was built under R version 4.3.21m22m36mℹ39m Run dplyrlast_dplyr_warnings to see the 7 remaining warnings.|
 stm|stem|39f782b49641acd8|2ff228fad6019fd7|b460f55a4343031c|1625958477||t19679.8728979589s|75f7bf0fc76ef872|5949919|rds|local|vector|||362.75|package quanteda was built under R version 4.3.2. undefined subclass ndiMatrix of class replValueSp definition not updated. undefined subclass pcorMatrix of class replValueSp definition not updated|
-transform__311dfmText|stem|bc5448dd9c532580|9aca5bdf5784d9d4|85af34b9fdd284dd|-1026815574||t19679.8684821319s|7827ce7c558a2789|4949090|rds|local|vector|||12.48|undefined subclass ndiMatrix of class replValueSp definition not updated. undefined subclass pcorMatrix of class replValueSp definition not updated|
-transform__311tidyText|stem|0593275bc522a09e|de766a0f1d0e9619|826d68c90d8ba146|-1692642544||t19679.6111672122s|595562a2ea61c6e8|1834161|rds|local|vector|||3.88||
+transform__311dfmText|stem|2a73b19c73a22818|9aca5bdf5784d9d4|3eacfd6393993ae9|-1026815574||t19682.0271102895s|3a3ecedf018c6d56|397375|rds|local|vector|||0.79|undefined subclass ndiMatrix of class replValueSp definition not updated. undefined subclass pcorMatrix of class replValueSp definition not updated|
+transform__311tidyText|stem|b1dd7f4b5b5bb05a|5308c040d61e1167|bd5246f4ad8e5ed4|-1692642544||t19682.0270998389s|bc96b3aa60759ad8|101436|rds|local|vector|||0.28||
+transform__modelMetrics|function|344746a522a1f822|||||||||||||||
