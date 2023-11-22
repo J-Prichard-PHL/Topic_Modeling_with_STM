@@ -6,11 +6,14 @@
   
   
 ## Sources
-- Julia Silge's Work
-  |Source|Details|
-  |------|-------|
-  |[Evaluation](https://juliasilge.com/blog/evaluating-stm/)| Includes details on building an STM model|
-  |[Details on Training](https://juliasilge.com/blog/sherlock-holmes-stm/)| includes details on parameter tuning|
+  |Source|Details|Local Name|
+  |------|-------|----------|
+  |[Evaluation](https://juliasilge.com/blog/evaluating-stm/)| Includes details on building an STM model.  Human readable by Julia Silge||
+  |[Details on Training](https://juliasilge.com/blog/sherlock-holmes-stm/)| includes details on parameter tuning. Human readable by Julia Silge||
+  |[STM Vignette](https://cran.r-project.org/web/packages/stm/vignettes/stmVignette.pdf)| Official vignette by the STM team.|stmVignette.pdf|
+  |[Topic Models](https://www.cs.columbia.edu/~blei/papers/BleiLafferty2009.pdf)|Introduction to Topic Modeling|TopicModels__BleiLafferty2009.pdf|
+  
+  
   
 
 ## Packages
