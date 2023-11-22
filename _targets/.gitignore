@@ -3,8 +3,3 @@
 !meta
 meta/*
 !meta/meta
-
-# Sundry repositories of useless code
-_targets/*
-tutorialCode/
-dev/
