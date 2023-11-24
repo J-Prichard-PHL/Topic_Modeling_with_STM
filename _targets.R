@@ -58,47 +58,59 @@ list(
   
   # ==== Take only LI calls ==== 
   tar_target(
-    name = filter__311Calls_li
+    name = filter__311Calls
     , command = filter(
         extract__311raw
-      , agency_responsible == "License & Inspections"
+      , agency_responsible == "Philly311 Contact Center"
+    )
+  ),
+  
+  # ==== Remove All Metadata ====
+  tar_target(
+      name = select__311Calls_textOnly
+    , command = create__documentDataset(
+          dataset = filter__311Calls
+        , documentID = 'cartodb_id'
+        , text = 'subject'
     )
   ),
   
   
-  # ==== TidyTize the Data and Cast to a DFM ==== 
+  # ==== Prepare Text Documents with STM ==== 
   tar_target(
-             name      = transform__311tidyText
-             , command = create__tidyTextDataset(
-                                                   filter__311Calls_li
-                                                 , stopwords      = tidytext::stop_words
-                                                 , text_field     = "subject"
-                                                 , document_field = "cartodb_id"
-             )
+        name = transform__stmTextProcessing
+      , command = transform__stmTextProcessing(
+          select__311Calls_textOnly
+      )
   ),
   
-
-  
+  # ==== Build Models and Prepare for Selection ====
   tar_target(
-             name = transform__311dfmText
-             , command = create__textMatrix(transform__311tidyText)
-  ),
-  
-  tar_target(
-               name = modelspace
-             , command = fit__modelOverSearchSpace(
-                                                      seq(5,25,5)
-                                                    , transform__311dfmText
-             )
-  ),
-  
-  tar_target(
-                   name = model_selection
-                 , command = transform__modelMetrics(
-                               dataset = transform__311dfmText
-                             , model_data = modelspace
-                 )
+    name = model
+    , command = stm::stm(
+          documents = transform__stmTextProcessing$documents
+        , vocab = transform__stmTextProcessing$vocab
+        , K = 20
+    )
   )
+  
+  
+  # ==== Build Models and Prepare for Selection ====
+  # tar_target(
+  #              name = modelspace
+  #            , command = fit__modelOverSearchSpace(
+  #                                                     seq(5,25,5)
+  #                                                   , transform__311dfmText
+  #            )
+  # ),
+  # 
+  # tar_target(
+  #                  name = model_selection
+  #                , command = transform__modelMetrics(
+  #                              dataset = transform__311dfmText
+  #                            , model_data = modelspace
+  #                )
+  # )
   
 
 )

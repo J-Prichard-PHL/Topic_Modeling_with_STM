@@ -1,5 +1,5 @@
 ---
-title: "Exploratory Data Analysis"
+title: "Exploratory Data Analysis, Evaluation, and Visualization"
 format: html
 editor: visual
 ---
@@ -54,5 +54,42 @@ We have 294871 total calls -- none are NA, which isn't really believable.
 data__311Calls %>% group_by(status_notes) %>% summarize( count = n()) %>% arrange(-count)
 
 print(data__311Calls %>% sapply(. %>% is.na %>% sum()))
+
+```
+
+Lets find the most suitable agency for analysis on -- we're looking for something with a lot of data, and a lot of distinct subject
+
+```{r}
+
+
+```
+
+Lets explore the 311 agency
+
+```{r}
+targets::tar_read('extract__311raw') %>% 
+  filter(agency_responsible == 'Philly311 Contact Center') %>% 
+  mutate(totalCalls = n()) %>% 
+  group_by(subject) %>% mutate(subjectCount = n()) %>% 
+  ungroup() %>% 
+  mutate(subjectPercentOfTotal = subjectCount / totalCalls) %>% 
+  select(subject,subjectPercentOfTotal,subjectCount,totalCalls) %>% 
+  arrange(-subjectCount) %>% 
+  unique ()
+
+```
+
+## Evaluating Models
+
+## Visualizing A Test Model
+
+```{r}
+#| fig-height: 20
+
+plot.STM(
+    targets::tar_read('model')
+  , type = 'labels'
+)
+
 
 ```
