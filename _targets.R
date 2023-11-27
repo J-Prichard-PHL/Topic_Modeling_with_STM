@@ -86,11 +86,11 @@ list(
   
   # ==== Build Models and Prepare for Selection ====
   tar_target(
-    name = model
-    , command = stm::stm(
-          documents = transform__stmTextProcessing$documents
-        , vocab = transform__stmTextProcessing$vocab
-        , K = 20
+      name = model__modelSearchResults
+    , command = stm::searchK(
+            documents = transform__stmTextProcessing$documents
+          , vocab     = transform__stmTextProcessing$vocab
+          , K = seq(5,20,1)
     )
   )
   
