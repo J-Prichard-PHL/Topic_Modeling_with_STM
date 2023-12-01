@@ -31,6 +31,48 @@ create__documentDataset <- function(
   return(temp)
 }
 
+
+#'transform__stmTextProcessing
+#'
+#'
+#'
+#'
+#'
+
+transform__stmTextProcessing <- function(
+      dataset
+)
+{
+  # Utilize STM's text Processor:
+  # We'll use use the default.  See ?stm::textProcessor
+  textProcessed <- stm::textProcessor(
+      documents = dataset$text
+    , metadata = dataset['document']
+  )
+  
+  # PrepDocuments
+  documentsPrepped <- stm::prepDocuments(
+      documents = textProcessed$documents
+    , vocab = textProcessed$vocab
+    , meta =  textProcessed$meta
+  )
+  
+  
+  return(documentsPrepped)
+  
+  
+  
+}
+
+
+
+
+
+
+
+
+# ==== Deprecated ====
+
 create__tidyTextDataset <- function(
       dataset
     , stopwords = tidytext::stop_words

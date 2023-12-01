@@ -2,14 +2,23 @@ name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iterat
 create__documentDataset|function|9b50a3cbda88244e|||||||||||||||
 create__textMatrix|function|1e0108bacfa3e6ff|||||||||||||||
 create__tidyTextDataset|function|42544588145d974d|||||||||||||||
-extract__311raw|stem|d87040ff21ba468d|412168b63bf8584a|0134e77aba3484c2|-488879972||t19681.8754613101s|3db64a84aa14cb52|17201681|rds|local|vector|||58.44||
-filter__311Calls_li|stem|d21db57260ddeb82|9114f87cd505e5c1|a6a4046fbcc4bc12|-130019379||t19682.0247459457s|e87012e0e68d3ae4|1943811|rds|local|vector|||0.01||
+data__documentTable|stem|9084bcef40080ccf|c5de1d5456bbeef5|3a9b4a9a3c6a21f5|-675158505||t19691.9300751311s|599717fa369ea6fa|18685350|rds|local|vector|||3.26||
+data__stmTextProcessing|stem|2c228ecd813ef941|1572adb66ac9e7d4|b2fb1e38e8122055|118732809||t19690.1802661301s|abf35983b48f6f71|2029866|rds|local|vector|||129.22||
+data__topicTable|stem|d3207427c2c4d457|34d4183ae4f0abbc|2b50576fbab57b15|-148224196||t19691.9299966725s|0e91888449213855|1058|rds|local|vector|||0.11||
+extract__311raw|stem|b1481dc5571c5fb8|412168b63bf8584a|0134e77aba3484c2|-488879972||t19685.0062052739s|b826cddc17ab8ea3|17492181|rds|local|vector|||49.93||
+filter__311Calls|stem|d59713cefa3a2343|a616f51b2f9abbdf|0be15f26080daeb4|831044873||t19685.006225938s|952d3d484310f2bf|5197171|rds|local|vector|||0.03||
 fit__modelOverSearchSpace|function|28eeec57b82af5ea|||||||||||||||
 getData_cartoDbMonthQuery|function|1cf6d406378482e8|||||||||||||||
 getData_phlCartoApi|function|544f346554acd4f7|||||||||||||||
-model_selection|stem|4eafd867f47a581b|0b86096eedf07559|eaaf1b5efdc0cb73|-1230616911||t19682.0446095866s|a1214dd2c738f1ee|2761844|rds|local|vector|||9.61||
-modelspace|stem|b5772f7a40bac0ea|76400e64eb453e89|6ca93ddd54ecb8a8|1466217285||t19682.0444911552s|481a5e1421039432|2702108|rds|local|vector|||1501.18|1m22mThere were 8 warnings in mutate.The first warning was1m22m36mℹ39m In argument topic_model  furrrfuture_mapk, stmstmdataset, K  .,  verbose  FALSE.Caused by warning33m39m package quanteda was built under R version 4.3.21m22m36mℹ39m Run dplyrlast_dplyr_warnings to see the 7 remaining warnings.|
-stm|stem|39f782b49641acd8|2ff228fad6019fd7|b460f55a4343031c|1625958477||t19679.8728979589s|75f7bf0fc76ef872|5949919|rds|local|vector|||362.75|package quanteda was built under R version 4.3.2. undefined subclass ndiMatrix of class replValueSp definition not updated. undefined subclass pcorMatrix of class replValueSp definition not updated|
-transform__311dfmText|stem|2a73b19c73a22818|9aca5bdf5784d9d4|3eacfd6393993ae9|-1026815574||t19682.0271102895s|3a3ecedf018c6d56|397375|rds|local|vector|||0.79|undefined subclass ndiMatrix of class replValueSp definition not updated. undefined subclass pcorMatrix of class replValueSp definition not updated|
-transform__311tidyText|stem|b1dd7f4b5b5bb05a|5308c040d61e1167|bd5246f4ad8e5ed4|-1692642544||t19682.0270998389s|bc96b3aa60759ad8|101436|rds|local|vector|||0.28||
+model|stem||dd9b5f0d3c9656bb|faf67d7d89446b1f|1816327236||t19685.0085096637s||0|rds|local|vector|||0.86||the condition has length  1
+model__modelSearchResults|stem|ac109cf75fb21bfd|29b6198c884384c6|faf67d7d89446b1f|-1670246518||t19688.8847546943s|0b575e4744178968|1201|rds|local|vector|||13230.47||
+model_selectedModel|stem|0397f1ea65da62ac|7c4080f7bad4bc9a|96aef4f00c277748|-1066766452||t19690.1844356048s|9db86b92776fb92d|10117642|rds|local|vector|||359.35||
+select__311Calls_textOnly|stem|160feba2b109c31f|146d8cb7c12577aa|65fcd963ec81041e|-2057656452||t19685.0062300389s|c6ae172239689e20|1368459|rds|local|vector|||0.01||
+transform__buildTopicTable|function|4d722a33607a9ef6|||||||||||||||
 transform__modelMetrics|function|344746a522a1f822|||||||||||||||
+transform__rehydrateDataForVisualization|function|e22a9ea398eeedb5|||||||||||||||
+transform__stmTextProcessing|function|e3c2f3e858760d23|||||||||||||||
+write__311Calls|stem|b4a36ceea8794198|51b3029f596f249c|abffaa4104b37021|-1517061334||t19691.9490000586s|7b2d3db126d6cc1c|9663189|rds|local|vector|||10.23||
+write__documentTable|stem|c06ea22d3ce6ec84|290b98ea9ba6cbfe|741c4ad4fc2e4093|1328159229||t19691.9494639696s|e231a43f3906dffb|29349547|rds|local|vector|||32.77||
+write__topicTable|stem|6e38e94c85588d9e|1904704d3ce3b4fa|02dc548759bc529b|-313678581||t19691.9490015605s|df35f6760c3b5d39|160595|rds|local|vector|||0.06||
+writeFunction__toExcel|function|5263a3444a5b07e4|||||||||||||||

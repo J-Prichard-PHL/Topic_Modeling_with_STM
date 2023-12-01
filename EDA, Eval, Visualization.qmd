@@ -1,0 +1,160 @@
+---
+title: "Exploratory Data Analysis, Evaluation, and Visualization"
+format: html
+editor: visual
+---
+
+```{r}
+# Libraries
+library(tidyverse)
+library(stm)
+library(glue)
+
+# Data Cleaning Scripts
+source('r/1__dataPreparation.R')
+
+# Modeling Scripts
+source('r/2__modelCreationAndSelection.R')
+
+# Data Capture Scripts
+source('r/rUtils/dataCapture/apis.R')
+
+# Data Profiling
+source('r/rUtils/EDA.R')
+
+```
+
+# Exploratory Data Analysis of 311 Calls
+
+We're attempting to use 311 calls as a test bed for use of STM. To that end, we want to ensure we have good understanding of our underlying data.
+
+## Capture Data
+
+We'll look at 6 months worth of data pulled from our public 311 calls.\
+
+```{r}
+
+# Capture 311 Calls
+data__311Calls <- targets::tar_read('extract__311raw')
+```
+
+Lets profile the data so we know what we're looking at. This code is pulled from the rUtils EDA.R
+
+```{r}
+simpleEdaScript(data__311Calls)
+
+```
+
+We have 294871 total calls -- none are NA, which isn't really believable.
+
+```{r}
+data__311Calls %>% group_by(status_notes) %>% summarize( count = n()) %>% arrange(-count)
+
+print(data__311Calls %>% sapply(. %>% is.na %>% sum()))
+
+```
+
+Lets find the most suitable agency for analysis on -- we're looking for something with a lot of data, and a lot of distinct subject
+
+```{r}
+
+
+```
+
+Lets explore the 311 agency
+
+```{r}
+targets::tar_read('extract__311raw') %>% 
+  filter(agency_responsible == 'Philly311 Contact Center') %>% 
+  mutate(totalCalls = n()) %>% 
+  group_by(subject) %>% mutate(subjectCount = n()) %>% 
+  ungroup() %>% 
+  mutate(subjectPercentOfTotal = subjectCount / totalCalls) %>% 
+  select(subject,subjectPercentOfTotal,subjectCount,totalCalls) %>% 
+  arrange(-subjectCount) %>% 
+  unique ()
+
+```
+
+## Evaluating Models
+
+> Exclusivity represents the degree to which words are exclusive to a single topic rather than associated with multiple topics. Exclusive words are more likely to carry topic-relevant content, thus assisting with the interpretation of topics (Airoldi & Bischof, 2016). Variational lower bound is the metric used to determine convergence for a specific solution. In other words, the estimation functions, searchK() and stm(), will continue to evaluate models until the change in the variational lower bound is smaller than some designated threshold or the maximum number of allowed iterations is reached. The default value for convergence is change less than .00001. Residual is the estimation of the dispersion of residuals for a particular solution (Taddy, 2012). Some have recommended looking for local minima (Silge, 2018), whereas others suggest that dispersion greater than one indicates more topics are needed. Finally, semantic coherence is a measure of how commonly the most probable words in a topic co-occur. This metric has corresponded with human judgments of the logical consistency of a topic (Lee & Mimno, 2017; Mimno et al., 2011), although the validity of coherence is inconsistent (e.g., (Koltcov et al., 2019; Ramirez et al., 2012). A limitation of semantic coherence is that it is highest when the number of topics is low.
+>
+> We recommend researchers examine all four metrics to identify candidate models for more detailed evaluations. Ideal solutions yield fewer residuals and higher exclusivity, variational lower bound, and semantic coherence. Note that estimating more topics tends to improve fit metrics but diminish coherence (Fu et al., 2021). To balance this trade-off, one might seek solutions that represent a substantive improvement in metrics over preceding models; alternatively, a candidate model may precede a substantive reduction in fit in subsequent models.
+>
+> [Selecting the Number and Labels of Topics in Topic Modeling: A Tutorial](https://journals.sagepub.com/doi/full/10.1177/25152459231160105)
+>
+> Sara J. Weston, Ian Shryock, Ryan Light, and Phillip A. Fisher
+>
+> Advances in Methods and Practices in Psychological Science 2023 6:2
+
+We've built a K search object that we can utilize to evaluate these metrics.
+
+```{r}
+
+library(tidyverse)
+
+# Code from "Selecting the Number and Labels of Topics in Topic Modeling: A Tutorial"
+
+# Read Model Selection
+targets::tar_read('model__modelSearchResults')$results  %>%
+    pivot_longer(cols = -K, names_to = "metric", values_to = "value") %>% 
+    filter(metric %in% c("lbound", "exclus", "residual", "semcoh")) %>%
+    mutate(value = map_dbl(value, 1)) %>% 
+    mutate(K = map_dbl(K, 1)) %>% 
+    ggplot(aes(x = K, y = value, color = metric)) +
+    geom_point() + geom_line() +
+    geom_vline(aes(xintercept = 8) , alpha = .5) +
+    geom_vline(aes(xintercept = 14), alpha = .5) +
+    geom_vline(aes(xintercept = 18), alpha = .5) +
+    scale_x_continuous(breaks = c(3, 8, 14, 18, 20)) +
+    guides(color = "none") +
+    facet_wrap(~metric, scales = "free") +
+    labs(y = NULL)
+
+```
+
+## Visualizing A Test Model
+
+Lets look at some of the built in visualizations below.
+
+### Labels
+
+```{r}
+#| fig-height: 15
+
+library(ggplot2)
+
+plot(targets::tar_read('model_selectedModel'), type = 'label')
+
+```
+
+```{r}
+
+#| fig-height: 15
+
+library(ggplot2)
+
+plot(targets::tar_read('model_selectedModel'), type = 'summary')
+```
+
+### Topic Correlation
+
+```{r}
+
+plot(stm::topicCorr(targets::tar_read('model_selectedModel')))
+
+
+
+```
+
+### Exploring Topic Corr Object
+
+```{r}
+topicCorr <- stm::topicCorr(targets::tar_read('model_selectedModel'))
+
+# We could transform this and pass it into the network graphing object to build
+# a network chart thats.....more informative than what we have above.
+topicCorr$cor
+
+```
