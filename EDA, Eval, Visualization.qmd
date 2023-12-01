@@ -35,10 +35,7 @@ We'll look at 6 months worth of data pulled from our public 311 calls.\
 ```{r}
 
 # Capture 311 Calls
-data__311Calls <- getData_cartoDbMonthQuery(
-                       baseQuery = "SELECT * FROM public_cases_fc WHERE CLOSED_DATETIME >= "
-                       , monthsOfData = 6
-                       )
+data__311Calls <- targets::tar_read('extract__311raw')
 ```
 
 Lets profile the data so we know what we're looking at. This code is pulled from the rUtils EDA.R
@@ -119,43 +116,45 @@ targets::tar_read('model__modelSearchResults')$results  %>%
 
 ## Visualizing A Test Model
 
-```{r}
-#| fig-height: 20
+Lets look at some of the built in visualizations below.
 
-# plot.STM(
-#     targets::tar_read('model')
-#   , type = 'labels'
-# )
-
-
-```
+### Labels
 
 ```{r}
-# stm::labelTopics(
-#     targets::tar_read('model')
-#   , seq(1,20,1)
-# )
-# 
+#| fig-height: 15
 
+library(ggplot2)
+
+plot(targets::tar_read('model_selectedModel'), type = 'label')
 
 ```
 
 ```{r}
 
+#| fig-height: 15
+
+library(ggplot2)
+
+plot(targets::tar_read('model_selectedModel'), type = 'summary')
+```
+
+### Topic Correlation
+
+```{r}
+
+plot(stm::topicCorr(targets::tar_read('model_selectedModel')))
+
 
 
 ```
 
+### Exploring Topic Corr Object
+
 ```{r}
-# stm::findThoughts(
-#     targets::tar_read('model')
-#   , targets::tar_read('select__311Calls_textOnly') %>% 
-#   mutate(rowNum = row_number()) %>% 
-#   anti_join(
-#       tibble(rowNum = targets::tar_read('transform__stmTextProcessing')$docs.removed)
-#     )
-#   , topics = 4
-#   , n = 5
-# )
+topicCorr <- stm::topicCorr(targets::tar_read('model_selectedModel'))
+
+# We could transform this and pass it into the network graphing object to build
+# a network chart thats.....more informative than what we have above.
+topicCorr$cor
 
 ```

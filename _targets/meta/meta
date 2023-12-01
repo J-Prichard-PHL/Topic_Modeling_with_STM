@@ -2,6 +2,9 @@ name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iterat
 create__documentDataset|function|9b50a3cbda88244e|||||||||||||||
 create__textMatrix|function|1e0108bacfa3e6ff|||||||||||||||
 create__tidyTextDataset|function|42544588145d974d|||||||||||||||
+data__documentTable|stem|9084bcef40080ccf|c5de1d5456bbeef5|3a9b4a9a3c6a21f5|-675158505||t19691.9300751311s|599717fa369ea6fa|18685350|rds|local|vector|||3.26||
+data__stmTextProcessing|stem|2c228ecd813ef941|1572adb66ac9e7d4|b2fb1e38e8122055|118732809||t19690.1802661301s|abf35983b48f6f71|2029866|rds|local|vector|||129.22||
+data__topicTable|stem|d3207427c2c4d457|34d4183ae4f0abbc|2b50576fbab57b15|-148224196||t19691.9299966725s|0e91888449213855|1058|rds|local|vector|||0.11||
 extract__311raw|stem|b1481dc5571c5fb8|412168b63bf8584a|0134e77aba3484c2|-488879972||t19685.0062052739s|b826cddc17ab8ea3|17492181|rds|local|vector|||49.93||
 filter__311Calls|stem|d59713cefa3a2343|a616f51b2f9abbdf|0be15f26080daeb4|831044873||t19685.006225938s|952d3d484310f2bf|5197171|rds|local|vector|||0.03||
 fit__modelOverSearchSpace|function|28eeec57b82af5ea|||||||||||||||
@@ -9,6 +12,13 @@ getData_cartoDbMonthQuery|function|1cf6d406378482e8|||||||||||||||
 getData_phlCartoApi|function|544f346554acd4f7|||||||||||||||
 model|stem||dd9b5f0d3c9656bb|faf67d7d89446b1f|1816327236||t19685.0085096637s||0|rds|local|vector|||0.86||the condition has length  1
 model__modelSearchResults|stem|ac109cf75fb21bfd|29b6198c884384c6|faf67d7d89446b1f|-1670246518||t19688.8847546943s|0b575e4744178968|1201|rds|local|vector|||13230.47||
+model_selectedModel|stem|0397f1ea65da62ac|7c4080f7bad4bc9a|96aef4f00c277748|-1066766452||t19690.1844356048s|9db86b92776fb92d|10117642|rds|local|vector|||359.35||
 select__311Calls_textOnly|stem|160feba2b109c31f|146d8cb7c12577aa|65fcd963ec81041e|-2057656452||t19685.0062300389s|c6ae172239689e20|1368459|rds|local|vector|||0.01||
+transform__buildTopicTable|function|4d722a33607a9ef6|||||||||||||||
 transform__modelMetrics|function|344746a522a1f822|||||||||||||||
-transform__stmTextProcessing|stem|ad5ec7db81e755bc|1572adb66ac9e7d4|1b79cef65d165907|1470012767||t19685.0084826353s|fb50557df964e6b1|1279076|rds|local|vector|||193.89||
+transform__rehydrateDataForVisualization|function|e22a9ea398eeedb5|||||||||||||||
+transform__stmTextProcessing|function|e3c2f3e858760d23|||||||||||||||
+write__311Calls|stem|b4a36ceea8794198|51b3029f596f249c|abffaa4104b37021|-1517061334||t19691.9490000586s|7b2d3db126d6cc1c|9663189|rds|local|vector|||10.23||
+write__documentTable|stem|c06ea22d3ce6ec84|290b98ea9ba6cbfe|741c4ad4fc2e4093|1328159229||t19691.9494639696s|e231a43f3906dffb|29349547|rds|local|vector|||32.77||
+write__topicTable|stem|6e38e94c85588d9e|1904704d3ce3b4fa|02dc548759bc529b|-313678581||t19691.9490015605s|df35f6760c3b5d39|160595|rds|local|vector|||0.06||
+writeFunction__toExcel|function|5263a3444a5b07e4|||||||||||||||

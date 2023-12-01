@@ -46,13 +46,15 @@ transform__stmTextProcessing <- function(
   # Utilize STM's text Processor:
   # We'll use use the default.  See ?stm::textProcessor
   textProcessed <- stm::textProcessor(
-    documents = dataset$text
+      documents = dataset$text
+    , metadata = dataset['document']
   )
   
   # PrepDocuments
   documentsPrepped <- stm::prepDocuments(
-      textProcessed$documents
-    , textProcessed$vocab
+      documents = textProcessed$documents
+    , vocab = textProcessed$vocab
+    , meta =  textProcessed$meta
   )
   
   
@@ -61,6 +63,11 @@ transform__stmTextProcessing <- function(
   
   
 }
+
+
+
+
+
 
 
 
